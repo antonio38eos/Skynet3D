@@ -1,0 +1,6 @@
+[submodule "vendor/U8glib_Arduino"]
+  path = vendor/U8glib_Arduino
+  url = git@github.com:olikraus/U8glib_Arduino.git
+[submodule "Marlin"]
+	path = Marlin
+	url = git@github.com:MarlinFirmware/Marlin.git
