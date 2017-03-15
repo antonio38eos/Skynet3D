@@ -34,6 +34,11 @@
 /* All the implementation is done in *.cpp files to get better compatibility with avr-gcc without the Arduino IDE */
 /* Use this file to help the Arduino IDE find which Arduino libraries are needed and to keep documentation on GCode */
 
+
+// optimize it (eboney)
+#pragma GCC optimize ("-O3")
+
+
 #include "MarlinConfig.h"
 
 #if ENABLED(ULTRA_LCD)
@@ -48,7 +53,7 @@
     #include <LCD.h>
     #include <LiquidCrystal_I2C.h>
   #elif ENABLED(DOGLCD)
-    #include <U8glib.h> // library for graphics LCD by Oli Kraus (https://github.com/olikraus/U8glib_Arduino)
+    #include "U8glib.h"
   #else
     #include <LiquidCrystal.h> // library for character LCD
   #endif

@@ -734,7 +734,7 @@ static void report_current_position();
  */
 inline void sync_plan_position() {
   #if ENABLED(DEBUG_LEVELING_FEATURE)
-    if (DEBUGGING(LEVELING)) DEBUG_POS("sync_plan_position", current_position);
+//    if (DEBUGGING(LEVELING)) DEBUG_POS("sync_plan_position", current_position);
   #endif
   planner.set_position_mm(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS]);
 }
@@ -1511,12 +1511,12 @@ static void set_axis_is_at_home(AxisEnum axis) {
 
   #if ENABLED(DEBUG_LEVELING_FEATURE)
     if (DEBUGGING(LEVELING)) {
-      SERIAL_ECHOPAIR("> home_offset[", axis_codes[axis]);
-      SERIAL_ECHOLNPAIR("] = ", home_offset[axis]);
-      DEBUG_POS("", current_position);
-      SERIAL_ECHOPAIR("<<< set_axis_is_at_home(", axis_codes[axis]);
-      SERIAL_CHAR(')');
-      SERIAL_EOL;
+//      SERIAL_ECHOPAIR("> home_offset[", axis_codes[axis]);
+//      SERIAL_ECHOLNPAIR("] = ", home_offset[axis]);
+//      DEBUG_POS("", current_position);
+//      SERIAL_ECHOPAIR("<<< set_axis_is_at_home(", axis_codes[axis]);
+//      SERIAL_CHAR(')');
+//      SERIAL_EOL;
     }
   #endif
 }
@@ -1585,7 +1585,7 @@ void do_blocking_move_to(const float &x, const float &y, const float &z, const f
   float old_feedrate_mm_s = feedrate_mm_s;
 
   #if ENABLED(DEBUG_LEVELING_FEATURE)
-    if (DEBUGGING(LEVELING)) print_xyz(PSTR(">>> do_blocking_move_to"), NULL, x, y, z);
+//    if (DEBUGGING(LEVELING)) print_xyz(PSTR(">>> do_blocking_move_to"), NULL, x, y, z);
   #endif
 
   #if ENABLED(DELTA)
@@ -1690,7 +1690,7 @@ void do_blocking_move_to(const float &x, const float &y, const float &z, const f
   feedrate_mm_s = old_feedrate_mm_s;
 
   #if ENABLED(DEBUG_LEVELING_FEATURE)
-    if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< do_blocking_move_to");
+//    if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< do_blocking_move_to");
   #endif
 }
 void do_blocking_move_to_x(const float &x, const float &fr_mm_s/*=0.0*/) {
@@ -1738,9 +1738,9 @@ static void clean_up_after_endstop_or_probe_move() {
   inline void do_probe_raise(float z_raise) {
     #if ENABLED(DEBUG_LEVELING_FEATURE)
       if (DEBUGGING(LEVELING)) {
-        SERIAL_ECHOPAIR("do_probe_raise(", z_raise);
-        SERIAL_CHAR(')');
-        SERIAL_EOL;
+//        SERIAL_ECHOPAIR("do_probe_raise(", z_raise);
+//        SERIAL_CHAR(')');
+//        SERIAL_EOL;
       }
     #endif
 
@@ -2002,8 +2002,8 @@ static void clean_up_after_endstop_or_probe_move() {
 
     #if ENABLED(DEBUG_LEVELING_FEATURE)
       if (DEBUGGING(LEVELING)) {
-        DEBUG_POS("set_probe_deployed", current_position);
-        SERIAL_ECHOLNPAIR("deploy: ", deploy);
+//        DEBUG_POS("set_probe_deployed", current_position);
+//        SERIAL_ECHOLNPAIR("deploy: ", deploy);
       }
     #endif
 
@@ -2074,7 +2074,7 @@ static void clean_up_after_endstop_or_probe_move() {
 
   static void do_probe_move(float z, float fr_mm_m) {
     #if ENABLED(DEBUG_LEVELING_FEATURE)
-      if (DEBUGGING(LEVELING)) DEBUG_POS(">>> do_probe_move", current_position);
+//      if (DEBUGGING(LEVELING)) DEBUG_POS(">>> do_probe_move", current_position);
     #endif
 
     // Deploy BLTouch at the start of any probe
@@ -2100,7 +2100,7 @@ static void clean_up_after_endstop_or_probe_move() {
     SYNC_PLAN_POSITION_KINEMATIC();
 
     #if ENABLED(DEBUG_LEVELING_FEATURE)
-      if (DEBUGGING(LEVELING)) DEBUG_POS("<<< do_probe_move", current_position);
+//      if (DEBUGGING(LEVELING)) DEBUG_POS("<<< do_probe_move", current_position);
     #endif
   }
 
@@ -2109,7 +2109,7 @@ static void clean_up_after_endstop_or_probe_move() {
   static float run_z_probe() {
 
     #if ENABLED(DEBUG_LEVELING_FEATURE)
-      if (DEBUGGING(LEVELING)) DEBUG_POS(">>> run_z_probe", current_position);
+//      if (DEBUGGING(LEVELING)) DEBUG_POS(">>> run_z_probe", current_position);
     #endif
 
     // Prevent stepper_inactive_time from running out and EXTRUDER_RUNOUT_PREVENT from extruding
@@ -2122,7 +2122,7 @@ static void clean_up_after_endstop_or_probe_move() {
 
       #if ENABLED(DEBUG_LEVELING_FEATURE)
         float first_probe_z = current_position[Z_AXIS];
-        if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPAIR("1st Probe Z:", first_probe_z);
+//        if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPAIR("1st Probe Z:", first_probe_z);
       #endif
 
       // move up by the bump distance
@@ -2143,14 +2143,14 @@ static void clean_up_after_endstop_or_probe_move() {
     do_probe_move(-(Z_MAX_LENGTH) - 10, Z_PROBE_SPEED_SLOW);
 
     #if ENABLED(DEBUG_LEVELING_FEATURE)
-      if (DEBUGGING(LEVELING)) DEBUG_POS("<<< run_z_probe", current_position);
+//      if (DEBUGGING(LEVELING)) DEBUG_POS("<<< run_z_probe", current_position);
     #endif
 
     // Debug: compare probe heights
     #if ENABLED(PROBE_DOUBLE_TOUCH) && ENABLED(DEBUG_LEVELING_FEATURE)
       if (DEBUGGING(LEVELING)) {
-        SERIAL_ECHOPAIR("2nd Probe Z:", current_position[Z_AXIS]);
-        SERIAL_ECHOLNPAIR(" Discrepancy:", first_probe_z - current_position[Z_AXIS]);
+//        SERIAL_ECHOPAIR("2nd Probe Z:", current_position[Z_AXIS]);
+//        SERIAL_ECHOLNPAIR(" Discrepancy:", first_probe_z - current_position[Z_AXIS]);
       }
     #endif
     return current_position[Z_AXIS];
@@ -2168,11 +2168,11 @@ static void clean_up_after_endstop_or_probe_move() {
   static float probe_pt(const float &x, const float &y, bool stow = true, int verbose_level = 1) {
     #if ENABLED(DEBUG_LEVELING_FEATURE)
       if (DEBUGGING(LEVELING)) {
-        SERIAL_ECHOPAIR(">>> probe_pt(", x);
-        SERIAL_ECHOPAIR(", ", y);
-        SERIAL_ECHOPAIR(", ", stow ? "" : "no ");
-        SERIAL_ECHOLNPGM("stow)");
-        DEBUG_POS("", current_position);
+//        SERIAL_ECHOPAIR(">>> probe_pt(", x);
+//        SERIAL_ECHOPAIR(", ", y);
+//        SERIAL_ECHOPAIR(", ", stow ? "" : "no ");
+//        SERIAL_ECHOLNPGM("stow)");
+//        DEBUG_POS("", current_position);
       }
     #endif
 
@@ -2211,7 +2211,7 @@ static void clean_up_after_endstop_or_probe_move() {
     }
 
     #if ENABLED(DEBUG_LEVELING_FEATURE)
-      if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< probe_pt");
+//      if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< probe_pt");
     #endif
 
     feedrate_mm_s = old_feedrate_mm_s;
@@ -2592,9 +2592,9 @@ static void do_homing_move(const AxisEnum axis, float distance, float fr_mm_s=0.
 
   #if ENABLED(DEBUG_LEVELING_FEATURE)
     if (DEBUGGING(LEVELING)) {
-      SERIAL_ECHOPAIR("<<< do_homing_move(", axis_codes[axis]);
-      SERIAL_CHAR(')');
-      SERIAL_EOL;
+//      SERIAL_ECHOPAIR("<<< do_homing_move(", axis_codes[axis]);
+//      SERIAL_CHAR(')');
+//      SERIAL_EOL;
     }
   #endif
 }
@@ -2625,9 +2625,9 @@ static void homeaxis(AxisEnum axis) {
 
   #if ENABLED(DEBUG_LEVELING_FEATURE)
     if (DEBUGGING(LEVELING)) {
-      SERIAL_ECHOPAIR(">>> homeaxis(", axis_codes[axis]);
-      SERIAL_CHAR(')');
-      SERIAL_EOL;
+//      SERIAL_ECHOPAIR(">>> homeaxis(", axis_codes[axis]);
+//      SERIAL_CHAR(')');
+//      SERIAL_EOL;
     }
   #endif
 
@@ -2738,9 +2738,9 @@ static void homeaxis(AxisEnum axis) {
 
   #if ENABLED(DEBUG_LEVELING_FEATURE)
     if (DEBUGGING(LEVELING)) {
-      SERIAL_ECHOPAIR("<<< homeaxis(", axis_codes[axis]);
-      SERIAL_CHAR(')');
-      SERIAL_EOL;
+//      SERIAL_ECHOPAIR("<<< homeaxis(", axis_codes[axis]);
+//      SERIAL_CHAR(')');
+//      SERIAL_EOL;
     }
   #endif
 } // homeaxis()
@@ -3397,7 +3397,7 @@ inline void gcode_G4() {
     }
 
     #if ENABLED(DEBUG_LEVELING_FEATURE)
-      if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< Z_SAFE_HOMING");
+//      if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< Z_SAFE_HOMING");
     #endif
   }
 
@@ -3647,7 +3647,7 @@ inline void gcode_G28() {
   clean_up_after_endstop_or_probe_move();
 
   #if ENABLED(DEBUG_LEVELING_FEATURE)
-    if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< gcode_G28");
+//    if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< gcode_G28");
   #endif
 
   // Restore the active tool after homing
@@ -3900,7 +3900,7 @@ inline void gcode_G28() {
    *  R  Set the Right limit of the probing grid
    *
    * Parameters with BILINEAR only:
-   * 
+   *
    *  Z  Supply an additional Z probe offset
    *
    * Global Parameters:
@@ -4404,7 +4404,7 @@ inline void gcode_G28() {
     #endif
 
     #if ENABLED(DEBUG_LEVELING_FEATURE)
-      if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< gcode_G29");
+//      if (DEBUGGING(LEVELING)) SERIAL_ECHOLNPGM("<<< gcode_G29");
     #endif
 
     report_current_position();
@@ -8039,8 +8039,8 @@ inline void gcode_T(uint8_t tmp_extruder) {
 
   #if ENABLED(DEBUG_LEVELING_FEATURE)
     if (DEBUGGING(LEVELING)) {
-      DEBUG_POS("AFTER", current_position);
-      SERIAL_ECHOLNPGM("<<< gcode_T");
+//      DEBUG_POS("AFTER", current_position);
+//      SERIAL_ECHOLNPGM("<<< gcode_T");
     }
   #endif
 }

@@ -246,13 +246,13 @@
     /* Custom characters defined in the first 8 characters of the LCD */
     #define LCD_STR_BEDTEMP     "\x00"  // Print only as a char. This will have 'unexpected' results when used in a string!
     #define LCD_STR_DEGREE      "\x01"
-    #define LCD_STR_THERMOMETER "\x02"
+    #define LCD_STR_THERMOMETER "\x02" // was x02
     #define LCD_STR_UPLEVEL     "\x03"
     #define LCD_STR_REFRESH     "\x04"
     #define LCD_STR_FOLDER      "\x05"
     #define LCD_STR_FEEDRATE    "\x06"
     #define LCD_STR_CLOCK       "\x07"
-    #define LCD_STR_ARROW_RIGHT ">"  /* from the default character set */
+    #define LCD_STR_ARROW_RIGHT "\x09"  /* from the default character set */
   #endif
 
   /**
